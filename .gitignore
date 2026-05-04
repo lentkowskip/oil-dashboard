@@ -1,0 +1,14 @@
+# Public-repo .gitignore: deny everything by default, then allow only what's safe to publish.
+#
+# This pattern is intentionally restrictive because the repo is PUBLIC. Any file not
+# explicitly allow-listed below stays local. Don't add allow-list entries without
+# considering whether the file leaks personal commentary, raw data, or auth secrets.
+
+# Deny everything
+*
+
+# Allow only the public dashboard + repo metadata + push tooling
+!.gitignore
+!README.md
+!oil.html
+!push_dashboard.sh
