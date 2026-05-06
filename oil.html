@@ -834,6 +834,149 @@
     font-weight: 500; border-bottom: none; border-top: 0.5px solid var(--border);
     padding-top: 6px; color: var(--text-primary);
   }
+  /* ---- Carry stoplight redesign (added May 2026) ---- */
+  .carry-regime-banner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 18px;
+    align-items: center;
+    padding: 16px 20px;
+    border-radius: var(--radius-lg);
+    margin: 0 0 16px;
+    border: 0.5px solid var(--border);
+  }
+  .carry-regime-banner.regime-loaded-active { background: var(--danger-bg); }
+  .carry-regime-banner.regime-loaded-quiet  { background: var(--warning-bg); }
+  .carry-regime-banner.regime-calm          { background: var(--success-bg); }
+  .carry-regime-banner.regime-setup-absent  { background: var(--surface-secondary); }
+  .carry-regime-dot {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.15) inset;
+  }
+  .carry-regime-banner.regime-loaded-active { color: var(--danger-text); }
+  .carry-regime-banner.regime-loaded-quiet  { color: var(--warning-text); }
+  .carry-regime-banner.regime-calm          { color: var(--success-text); }
+  .carry-regime-banner.regime-setup-absent  { color: var(--text-secondary); }
+  .carry-regime-label {
+    font-size: 18px; font-weight: 600; line-height: 1.2;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .carry-regime-subtitle {
+    font-size: 13px; font-weight: 400; opacity: 0.85;
+    margin-top: 3px;
+    text-transform: none; letter-spacing: 0;
+  }
+  .carry-regime-numbers {
+    font-size: 13px; font-variant-numeric: tabular-nums;
+    text-align: right;
+    color: var(--text-primary);
+  }
+  .carry-regime-numbers strong { font-weight: 600; }
+  .carry-regime-calibration-note {
+    grid-column: 1 / -1;
+    font-size: 12px; font-style: italic;
+    color: var(--text-secondary);
+    border-top: 0.5px dashed var(--border);
+    padding-top: 8px; margin-top: 4px;
+  }
+  .carry-stoplight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 14px 0;
+  }
+  @media (max-width: 800px) {
+    .carry-stoplight-grid { grid-template-columns: 1fr; }
+    .carry-regime-banner  { grid-template-columns: auto 1fr; }
+    .carry-regime-numbers { grid-column: 1 / -1; text-align: left; }
+  }
+  .carry-stoplight-box {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+  }
+  .carry-stoplight-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 0.5px solid var(--border);
+    padding-bottom: 6px; margin-bottom: 8px;
+  }
+  .carry-stoplight-header .sl-title {
+    font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--text-secondary);
+  }
+  .carry-stoplight-header .sl-score {
+    font-size: 16px; font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-primary);
+  }
+  .carry-stoplight-row {
+    display: grid;
+    grid-template-columns: 14px 1fr auto;
+    gap: 8px; align-items: baseline;
+    padding: 5px 0;
+    font-size: 13px;
+  }
+  .carry-stoplight-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    margin-top: 5px;
+  }
+  .carry-stoplight-dot.status-normal   { background: #2e8b57; }
+  .carry-stoplight-dot.status-elevated { background: #c97a3a; }
+  .carry-stoplight-dot.status-crisis   { background: #b13c3c; }
+  .carry-stoplight-name { color: var(--text-primary); }
+  .carry-stoplight-name .sl-watch {
+    color: var(--text-tertiary); font-size: 11.5px;
+    margin-left: 4px;
+  }
+  .carry-stoplight-value {
+    font-variant-numeric: tabular-nums;
+    text-align: right; color: var(--text-secondary);
+    font-size: 12.5px;
+  }
+  .carry-stoplight-footer {
+    margin-top: 8px; padding-top: 6px;
+    border-top: 0.5px dashed var(--border);
+    font-size: 11.5px; font-style: italic;
+    color: var(--text-tertiary);
+    line-height: 1.4;
+  }
+  .carry-tripwires {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    margin: 14px 0;
+  }
+  .carry-tripwires h5 {
+    font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    margin: 0 0 8px;
+  }
+  .carry-tripwire-row {
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    gap: 8px; align-items: baseline;
+    padding: 4px 0;
+    font-size: 13px;
+    color: var(--text-primary);
+  }
+  .carry-tripwire-icon {
+    width: 12px; height: 12px; border-radius: 50%;
+    margin-top: 4px;
+    border: 1.5px solid var(--text-tertiary);
+    background: transparent;
+  }
+  .carry-tripwire-icon.fired {
+    background: #b13c3c; border-color: #b13c3c;
+  }
+  .carry-tripwire-row .tripwire-effect {
+    color: var(--text-tertiary); font-size: 12px;
+    margin-left: 4px;
+  }
   .recession-panel {
     background: var(--surface);
     border: 0.5px solid var(--border);
@@ -1392,20 +1535,23 @@
 <div class="divergence-panel">
   <h3>Carry unwind score <small style="font-weight:400;color:var(--text-tertiary);">&middot; setup vs trigger</small></h3>
   <p class="div-note">Prospective carry-unwind risk. Pressure (loading depth) = avg stress of USD/JPY level, US-JP 10Y differential, and CFTC JPY spec position. Trigger has TWO paths: Path 1 (BoJ-pivot) = avg stress of JPY position 4w change, JGB 10Y, and JGB 2Y; Path 2 (Risk-off, added May 2026) = avg stress of HY OAS, VIX, KRE. Loaded-active fires when Pressure >= 0.3 AND either trigger >= 0.5; trigger_source field indicates which path is firing. Unwind risk = Pressure × (0.5 + 0.5 × min(max(Trigger_BoJ, Trigger_RiskOff), 1.0)). Regimes: Calm | Loaded-quiet | Loaded-active (unwind primed; catalyst-vulnerable) | Setup absent. Realized firing (USD/JPY 30d change) shown separately — coincident with active unwind, not in composite math. Phase 5 (May 2026): MoF intervention awareness — Component A suppresses USD/JPY contribution to Pressure post-intervention; Component B OR-gates intervention_stress into Trigger_BoJ as leading-indicator escalation signal (2022 + 1998 precedent: intervention precedes BoJ tightening).</p>
-  <div class="div-headline">
-    <div class="div-big tone-gap">0.18<small>Normal risk &middot; Setup absent regime</small></div>
-    <div class="div-reading"><strong>Trigger active without setup.</strong> Forward-looking signals firing but carry trade isn't loaded enough to unwind. Likely transient.<br><strong>Pressure</strong> 0.20 &middot; <strong>Trigger BoJ</strong> 0.82 &middot; <strong>Trigger RiskOff</strong> 0.00.<br><span style="color:var(--text-tertiary);font-size:13px;"><strong>Formula:</strong> Pressure &times; (0.5 + 0.5 &times; min(max(Trigger_BoJ, Trigger_RiskOff), 1.0))<br>0.20 &times; (0.5 + 0.5 &times; 0.82) = 0.20 &times; 0.908 = <strong>0.18</strong> <span style="color:var(--text-tertiary);">(active path: BoJ)</span></span><br><span style="color:var(--text-tertiary);font-size:13px;"><strong>Risk bands:</strong> &lt;0.40 Normal &middot; 0.40-0.85 Elevated &middot; &gt;0.85 Crisis</span> <br>Week-over-week: Pressure -0.00, Trigger +0.00, Unwind risk -0.00 (from Setup absent).</div>
-  </div>
+  <div class="carry-regime-banner regime-loaded-active">  <span class="carry-regime-dot"></span>  <div>    <div class="carry-regime-label">Loaded-active (BoJ)</div>    <div class="carry-regime-subtitle">Setup primed; catalyst-vulnerable. Unwind risk concentrated.</div>  </div>  <div class="carry-regime-numbers">    Pressure <strong>0.65</strong> &middot;     Trigger <strong>0.82</strong> &middot;     Unwind risk <strong>0.59</strong>  </div>  <div class="carry-regime-calibration-note">Calibration note: hybrid 10y-rolling read shows <strong>Setup absent</strong> &middot; Pressure 0.20 &middot; Trigger 0.82 &middot; Unwind risk 0.18. The two reads disagree because the rolling-percentile distribution does not yet include 2026-style episodes. Banner above leads with legacy fixed-threshold read.</div></div>
   <div class="div-spark-wrap">
     <p class="div-spark-title">Carry unwind history (12 weeks)</p>
     <svg viewBox="0 0 840 140" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;color:var(--text-primary)" role="img"><line x1="80" y1="107.4" x2="828" y2="107.4" stroke="currentColor" stroke-opacity="0.18" stroke-dasharray="3 3" /><text x="74" y="110.4" font-size="11" text-anchor="end" fill="currentColor" fill-opacity="0.55">0</text><line x1="80" y1="71.9" x2="828" y2="71.9" stroke="#d68b1a" stroke-opacity="0.28" stroke-dasharray="2 4" /><text x="74" y="74.9" font-size="11" text-anchor="end" fill="#d68b1a" fill-opacity="0.85">0.40 Elev</text><line x1="80" y1="32.0" x2="828" y2="32.0" stroke="#c63838" stroke-opacity="0.28" stroke-dasharray="2 4" /><text x="74" y="35.0" font-size="11" text-anchor="end" fill="#c63838" fill-opacity="0.85">0.85 Cris</text><path d="M 80.0,107.4 L 111.2,107.4 L 142.3,107.4 L 173.5,107.4 L 204.7,107.4 L 235.8,103.1 L 267.0,98.0 L 298.2,89.3 L 329.3,79.5 L 360.5,85.0 L 391.7,97.1 L 422.8,87.0 L 454.0,89.2 L 485.2,87.6 L 516.3,79.6 L 547.5,79.6 L 578.7,79.6 L 609.8,79.6 L 641.0,81.0 L 672.2,77.8 L 703.3,90.9 L 734.5,89.4 L 765.7,89.1 L 796.8,89.1 L 828.0,89.3" fill="none" stroke="#4a8c2e" stroke-width="1.5" stroke-opacity="0.85" /><path d="M 80.0,107.4 L 111.2,107.4 L 142.3,107.4 L 173.5,107.4 L 204.7,86.2 L 235.8,69.9 L 267.0,58.5 L 298.2,52.7 L 329.3,56.1 L 360.5,52.2 L 391.7,44.6 L 422.8,39.3 L 454.0,38.2 L 485.2,36.0 L 516.3,35.8 L 547.5,36.7 L 578.7,36.7 L 609.8,38.8 L 641.0,35.4 L 672.2,36.4 L 703.3,39.8 L 734.5,40.9 L 765.7,35.0 L 796.8,35.0 L 828.0,35.0" fill="none" stroke="#c63838" stroke-width="1.5" stroke-opacity="0.85" stroke-dasharray="4 3" /><path d="M 80.0,107.4 L 111.2,107.4 L 142.3,107.4 L 173.5,107.4 L 204.7,107.4 L 235.8,104.3 L 267.0,100.1 L 298.2,92.8 L 329.3,85.4 L 360.5,89.3 L 391.7,98.6 L 422.8,89.4 L 454.0,91.2 L 485.2,89.5 L 516.3,82.2 L 547.5,82.4 L 578.7,82.4 L 609.8,82.8 L 641.0,83.5 L 672.2,80.7 L 703.3,92.9 L 734.5,91.7 L 765.7,90.8 L 796.8,90.8 L 828.0,91.0" fill="none" stroke="currentColor" stroke-width="2.0" stroke-opacity="0.95" /><circle cx="80.0" cy="107.4" r="2.2" fill="#4a8c2e" /><circle cx="111.2" cy="107.4" r="2.2" fill="#4a8c2e" /><circle cx="142.3" cy="107.4" r="2.2" fill="#4a8c2e" /><circle cx="173.5" cy="107.4" r="2.2" fill="#4a8c2e" /><circle cx="204.7" cy="107.4" r="2.2" fill="#4a8c2e" /><circle cx="235.8" cy="104.3" r="2.2" fill="#4a8c2e" /><circle cx="267.0" cy="100.1" r="2.2" fill="#888" /><circle cx="298.2" cy="92.8" r="2.2" fill="#888" /><circle cx="329.3" cy="85.4" r="2.2" fill="#c63838" /><circle cx="360.5" cy="89.3" r="2.2" fill="#888" /><circle cx="391.7" cy="98.6" r="2.2" fill="#888" /><circle cx="422.8" cy="89.4" r="2.2" fill="#888" /><circle cx="454.0" cy="91.2" r="2.2" fill="#888" /><circle cx="485.2" cy="89.5" r="2.2" fill="#888" /><circle cx="516.3" cy="82.2" r="2.2" fill="#c63838" /><circle cx="547.5" cy="82.4" r="2.2" fill="#c63838" /><circle cx="578.7" cy="82.4" r="2.2" fill="#c63838" /><circle cx="609.8" cy="82.8" r="2.2" fill="#c63838" /><circle cx="641.0" cy="83.5" r="2.2" fill="#888" /><circle cx="672.2" cy="80.7" r="2.2" fill="#c63838" /><circle cx="703.3" cy="92.9" r="2.2" fill="#888" /><circle cx="734.5" cy="91.7" r="2.2" fill="#888" /><circle cx="765.7" cy="90.8" r="2.2" fill="#888" /><circle cx="796.8" cy="90.8" r="2.2" fill="#888" /><circle cx="828.0" cy="91.0" r="3.5" fill="#888" /><text x="80.0" y="134" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity="0.55">Feb 6</text><text x="267.0" y="134" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity="0.55">Mar 20</text><text x="454.0" y="134" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity="0.55">Apr 22</text><text x="641.0" y="134" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity="0.55">Apr 28</text><text x="828.0" y="134" font-size="11" text-anchor="middle" fill="currentColor" fill-opacity="0.55">May 4</text><g transform="translate(86,10)" font-size="11" fill="currentColor" fill-opacity="0.75"><line x1="0" y1="6" x2="14" y2="6" stroke="currentColor" stroke-width="2.0" /><text x="18" y="9">unwind risk</text><line x1="120" y1="6" x2="134" y2="6" stroke="#4a8c2e" stroke-width="1.5" /><text x="138" y="9">Pressure</text><line x1="200" y1="6" x2="214" y2="6" stroke="#c63838" stroke-width="1.5" stroke-dasharray="4 3" /><text x="218" y="9">Trigger Prob</text></g><g class="spark-crosshair" style="display:none; pointer-events:none;"><line class="spark-vline" x1="0" y1="8" x2="0" y2="118" stroke="currentColor" stroke-opacity="0.45" stroke-width="0.75" stroke-dasharray="3 3" /><line class="spark-hline" x1="80" y1="0" x2="828" y2="0" stroke="currentColor" stroke-opacity="0.30" stroke-width="0.75" stroke-dasharray="3 3" /><circle class="spark-focus" data-key="unwind" cx="0" cy="0" r="3.5" fill="var(--surface)" stroke="currentColor" stroke-width="1.5" /><circle class="spark-focus" data-key="pressure" cx="0" cy="0" r="3.5" fill="var(--surface)" stroke="#4a8c2e" stroke-width="1.5" /><circle class="spark-focus" data-key="trigger" cx="0" cy="0" r="3.5" fill="var(--surface)" stroke="#c63838" stroke-width="1.5" /></g><rect class="spark-hit" x="80" y="8" width="748" height="110" fill="transparent" style="cursor: crosshair;" /></svg><script type="application/json" class="spark-data" data-spark-id="spark-carry">{"id":"spark-carry","geom":{"W":840,"H":140,"padL":80,"padT":8,"plotW":748,"plotH":110,"n":25},"labels":["Feb 6","Feb 13","Feb 20","Feb 27","Mar 6","Mar 13","Mar 20","Mar 27","Apr 3","Apr 10","Apr 17","Apr 21","Apr 22","Apr 23","Apr 24","Apr 25","Apr 26","Apr 27","Apr 28","Apr 29","Apr 30","May 1","May 2","May 3","May 4"],"series":[{"key":"unwind","label":"unwind risk","color":"currentColor","values":[0.0,0.0,0.0,0.0,0.0,0.034,0.082,0.164,0.248,0.204,0.099,0.202,0.182,0.201,0.283,0.281,0.281,0.277,0.269,0.3,0.163,0.177,0.187,0.187,0.184],"ys":[107.4,107.4,107.4,107.4,107.4,104.3,100.1,92.8,85.4,89.3,98.6,89.4,91.2,89.5,82.2,82.4,82.4,82.8,83.5,80.7,92.9,91.7,90.8,90.8,91.0]},{"key":"pressure","label":"Pressure","color":"#4a8c2e","values":[0.0,0.0,0.0,0.0,0.0,0.048,0.106,0.203,0.314,0.252,0.116,0.229,0.205,0.223,0.313,0.313,0.313,0.313,0.297,0.333,0.185,0.202,0.206,0.206,0.203],"ys":[107.4,107.4,107.4,107.4,107.4,103.1,98.0,89.3,79.5,85.0,97.1,87.0,89.2,87.6,79.6,79.6,79.6,79.6,81.0,77.8,90.9,89.4,89.1,89.1,89.3]},{"key":"trigger","label":"Trigger Prob","color":"#c63838","values":[0.0,0.0,0.0,0.0,0.238,0.422,0.551,0.616,0.578,0.622,0.707,0.767,0.78,0.804,0.807,0.796,0.796,0.773,0.811,0.8,0.762,0.749,0.816,0.816,0.816],"ys":[107.4,107.4,107.4,107.4,86.2,69.9,58.5,52.7,56.1,52.2,44.6,39.3,38.2,36.0,35.8,36.7,36.7,38.8,35.4,36.4,39.8,40.9,35.0,35.0,35.0]}]}</script><div class="ch-tooltip spark-tooltip" data-spark-id="spark-carry" style="display:none;"></div>
+  </div>
+  <div class="carry-stoplight-grid">  <div class="carry-stoplight-box">  <div class="carry-stoplight-header">    <span class="sl-title">Pressure (is the trade loaded?)</span>    <span class="sl-score">0.20</span>  </div>  <div class="carry-stoplight-row">  <span class="carry-stoplight-dot status-elevated"></span>  <span class="carry-stoplight-name">USD/JPY spot <span class="sl-watch">(watch outside 135-162)</span></span>  <span class="carry-stoplight-value">156.4 &middot; Elevated</span></div><div class="carry-stoplight-row">  <span class="carry-stoplight-dot status-elevated"></span>  <span class="carry-stoplight-name">US-JP 10Y diff <span class="sl-watch">(watch &lt;1.5%)</span></span>  <span class="carry-stoplight-value">1.66 &middot; Elevated</span></div><div class="carry-stoplight-row">  <span class="carry-stoplight-dot status-elevated"></span>  <span class="carry-stoplight-name">JPY speculator net position <span class="sl-watch">(watch &lt;-100k)</span></span>  <span class="carry-stoplight-value">-94.0 &middot; Elevated</span></div>  <div class="carry-stoplight-footer">Box averages all three indicators continuously. Path fires Loaded-active independently at &ge;0.30.</div></div>  <div class="carry-stoplight-box">  <div class="carry-stoplight-header">    <span class="sl-title">Trigger BoJ (rates path)</span>    <span class="sl-score">0.82</span>  </div>  <div class="carry-stoplight-row">  <span class="carry-stoplight-dot status-normal"></span>  <span class="carry-stoplight-name">JPY position 4w change <span class="sl-watch">(watch &lt;-20k)</span></span>  <span class="carry-stoplight-value">-4.00 &middot; Normal</span></div><div class="carry-stoplight-row">  <span class="carry-stoplight-dot status-crisis"></span>  <span class="carry-stoplight-name">JGB 10Y yield <span class="sl-watch">(already Crisis (>2.40%))</span></span>  <span class="carry-stoplight-value">2.51 &middot; Crisis</span></div><div class="carry-stoplight-row">  <span class="carry-stoplight-dot status-crisis"></span>  <span class="carry-stoplight-name">JGB 2Y yield <span class="sl-watch">(already Crisis (>1.15%))</span></span>  <span class="carry-stoplight-value">1.17 &middot; Crisis</span></div>  <div class="carry-stoplight-footer">Box averages all three indicators continuously. Path fires Loaded-active independently at &ge;0.50.</div></div>  <div class="carry-stoplight-box">  <div class="carry-stoplight-header">    <span class="sl-title">Trigger RiskOff (credit/equity path)</span>    <span class="sl-score">0.00</span>  </div>  <div class="carry-stoplight-row">  <span class="carry-stoplight-dot status-normal"></span>  <span class="carry-stoplight-name">HY OAS <span class="sl-watch">(watch &gt;300bps)</span></span>  <span class="carry-stoplight-value">283.0 &middot; Normal</span></div><div class="carry-stoplight-row">  <span class="carry-stoplight-dot status-normal"></span>  <span class="carry-stoplight-name">VIX <span class="sl-watch">(watch &gt;20)</span></span>  <span class="carry-stoplight-value">17.4 &middot; Normal</span></div><div class="carry-stoplight-row">  <span class="carry-stoplight-dot status-normal"></span>  <span class="carry-stoplight-name">KRE <span class="sl-watch">(watch &lt;$60)</span></span>  <span class="carry-stoplight-value">69.7 &middot; Normal</span></div>  <div class="carry-stoplight-footer">Box averages all three indicators continuously. Path fires Loaded-active independently at &ge;0.50.</div></div></div>
+  <div class="carry-tripwires">  <h5>Tripwires &mdash; what would flip the regime</h5>  <div class="carry-tripwire-row">  <span class="carry-tripwire-icon "></span>  <span>USD/JPY closes below 155 <span class="tripwire-effect">&rarr; Pressure tightens toward Crisis</span></span></div><div class="carry-tripwire-row">  <span class="carry-tripwire-icon "></span>  <span>USD/JPY 30d change breaks below -3% <span class="tripwire-effect">&rarr; Realized firing flips ON (live unwind)</span></span></div><div class="carry-tripwire-row">  <span class="carry-tripwire-icon "></span>  <span>JGB 10Y closes above 2.55 <span class="tripwire-effect">&rarr; TriggerBoJ peaks; rates path fully loaded</span></span></div><div class="carry-tripwire-row">  <span class="carry-tripwire-icon "></span>  <span>HY OAS breaks above 350 <span class="tripwire-effect">&rarr; TriggerRiskOff path begins opening</span></span></div><div class="carry-tripwire-row">  <span class="carry-tripwire-icon "></span>  <span>MoF re-intervenes in FX <span class="tripwire-effect">&rarr; Phase 5 intervention escalation premium re-fires</span></span></div></div>
+  <div class="div-headline">
+    <div class="div-big tone-gap">0.18<small>Normal risk &middot; Setup absent regime</small></div>
+    <div class="div-reading"><strong>Trigger active without setup.</strong> Forward-looking signals firing but carry trade isn't loaded enough to unwind. Likely transient.<br><strong>Pressure</strong> 0.20 &middot; <strong>Trigger BoJ</strong> 0.82 &middot; <strong>Trigger RiskOff</strong> 0.00.<br><span style="color:var(--text-tertiary);font-size:13px;"><strong>Formula:</strong> Pressure &times; (0.5 + 0.5 &times; min(max(Trigger_BoJ, Trigger_RiskOff), 1.0))<br>0.20 &times; (0.5 + 0.5 &times; 0.82) = 0.20 &times; 0.908 = <strong>0.18</strong> <span style="color:var(--text-tertiary);">(active path: BoJ)</span></span><br><span style="color:var(--text-tertiary);font-size:13px;"><strong>Risk bands:</strong> &lt;0.40 Normal &middot; 0.40-0.85 Elevated &middot; &gt;0.85 Crisis</span> <br>Week-over-week: Pressure -0.00, Trigger +0.00, Unwind risk -0.00 (from Setup absent).</div>
   </div>
   <div class="div-breakdown">
     <div class="div-bkcol"><h5>Pressure (setup loading)</h5><table class="div-bktable"><tr><td>USD/JPY spot</td><td class="num">156.4</td><td class="num">0.20</td></tr><tr><td>US-JP 10Y diff</td><td class="num">1.66</td><td class="num">0.13</td></tr><tr><td>JPY speculator net position</td><td class="num">-94.0</td><td class="num">0.33</td></tr><tr class="avg-row"><td>Average</td><td></td><td class="num">0.20</td></tr></table></div>
     <div class="div-bkcol"><h5>Trigger BoJ (Path 1: rates)</h5><table class="div-bktable"><tr><td>JPY position 4w change</td><td class="num">-4.00</td><td class="num">0.00</td></tr><tr><td>JGB 10Y yield</td><td class="num">2.51</td><td class="num">1.37</td></tr><tr><td>JGB 2Y yield</td><td class="num">1.17</td><td class="num">1.08</td></tr><tr class="avg-row"><td>Average</td><td></td><td class="num">0.82</td></tr></table></div>
     <div class="div-bkcol"><h5>Trigger RiskOff (Path 2: credit/equity)</h5><table class="div-bktable"><tr><td>HY OAS</td><td class="num">283.0</td><td class="num">0.00</td></tr><tr><td>VIX</td><td class="num">17.4</td><td class="num">0.00</td></tr><tr><td>KRE</td><td class="num">69.7</td><td class="num">0.00</td></tr><tr class="avg-row"><td>Average</td><td></td><td class="num">0.00</td></tr></table></div>
   </div>
-  <div class="carry-intervention" style="margin-top:14px;padding:10px 14px;background:var(--surface-secondary);border-radius:var(--radius-md);border-left:3px solid #c97a3a;"><p style="margin:0 0 4px;font-size:13px;color:var(--text-secondary);"><strong>MoF intervention awareness (Phase 5)</strong> <span style="color:var(--text-tertiary);font-size:12px;">— recent yen-buying intervention; framework adjusts Pressure + Trigger BoJ accordingly</span></p><p style="margin:0;font-size:14px;color:var(--text-primary);">Most recent: <strong>2026-05-01</strong> &middot; ~$25B &middot; USD/JPY 158.5 → 156.85. <br/><span style="color:var(--text-tertiary);font-size:13px;">• USD/JPY stress suppressed by 0.024 (intervention proximity 0.70)<br/>• Intervention escalation premium 0.37 (below current Trigger BoJ 0.82, no lift)</span></p></div>  <div class="carry-realized" style="margin-top:14px;padding:10px 14px;background:var(--surface-secondary);border-radius:var(--radius-md);border-left:3px solid var(--accent-secondary, var(--text-tertiary));"><p style="margin:0 0 4px;font-size:13px;color:var(--text-secondary);"><strong>Realized firing (coincident — not in composite)</strong></p><p style="margin:0;font-size:14px;color:var(--text-primary);">USD/JPY 30d chg: <strong>-1.20</strong> &middot; stress score 0.00 &middot; <em>quiet</em>. Fires when JPY strengthens fast = active unwind in progress. Use as confirmation of regime transition from Loaded-active to live-firing.</p></div>  <div class="carry-shadow" style="margin-top:14px;padding:10px 14px;background:var(--surface-secondary);border-radius:var(--radius-md);border-left:3px solid #c97a3a;"><p style="margin:0 0 4px;font-size:13px;color:var(--text-secondary);"><strong>Shadow read &middot; pre-calibration live thresholds</strong> <span style="color:var(--text-tertiary);font-size:12px;">(transition-period comparison; new hybrid calibration is the active read above)</span></p><p style="margin:0;font-size:14px;color:var(--text-primary);">Regime: <strong>Loaded-active (BoJ)</strong> &middot; Pressure 0.65 &middot; Trigger 0.82 &middot; Unwind risk 0.59. <em>Active and shadow disagree</em> &mdash; the hybrid calibration’s 10-year-rolling thresholds for jpy_spec_position / us_jp_10y_diff / us_crude_exports re-scale the stress reading vs the legacy fixed cuts. See backtest validation in <code>backtest/calibration_policy/findings.md</code>.</p></div>  <details class="explainer">
+  <div class="carry-intervention" style="margin-top:14px;padding:10px 14px;background:var(--surface-secondary);border-radius:var(--radius-md);border-left:3px solid #c97a3a;"><p style="margin:0 0 4px;font-size:13px;color:var(--text-secondary);"><strong>MoF intervention awareness (Phase 5)</strong> <span style="color:var(--text-tertiary);font-size:12px;">— recent yen-buying intervention; framework adjusts Pressure + Trigger BoJ accordingly</span></p><p style="margin:0;font-size:14px;color:var(--text-primary);">Most recent: <strong>2026-05-01</strong> &middot; ~$25B &middot; USD/JPY 158.5 → 156.85. <br/><span style="color:var(--text-tertiary);font-size:13px;">• USD/JPY stress suppressed by 0.024 (intervention proximity 0.70)<br/>• Intervention escalation premium 0.37 (below current Trigger BoJ 0.82, no lift)</span></p></div>  <div class="carry-realized" style="margin-top:14px;padding:10px 14px;background:var(--surface-secondary);border-radius:var(--radius-md);border-left:3px solid var(--accent-secondary, var(--text-tertiary));"><p style="margin:0 0 4px;font-size:13px;color:var(--text-secondary);"><strong>Realized firing (coincident — not in composite)</strong></p><p style="margin:0;font-size:14px;color:var(--text-primary);">USD/JPY 30d chg: <strong>-1.20</strong> &middot; stress score 0.00 &middot; <em>quiet</em>. Fires when JPY strengthens fast = active unwind in progress. Use as confirmation of regime transition from Loaded-active to live-firing.</p></div>  <div class="carry-shadow" style="margin-top:14px;padding:10px 14px;background:var(--surface-secondary);border-radius:var(--radius-md);border-left:3px solid #c97a3a;"><p style="margin:0 0 4px;font-size:13px;color:var(--text-secondary);"><strong>Hybrid calibration read</strong> <span style="color:var(--text-tertiary);font-size:12px;">(new 10-year-rolling thresholds; banner above leads with legacy fixed-threshold read)</span></p><p style="margin:0;font-size:14px;color:var(--text-primary);">Regime: <strong>Setup absent</strong> &middot; Pressure 0.20 &middot; Trigger 0.82 &middot; Unwind risk 0.18. <em>Active and shadow disagree</em> &mdash; the hybrid calibration’s 10-year-rolling thresholds for jpy_spec_position / us_jp_10y_diff / us_crude_exports re-scale the stress reading vs the legacy fixed cuts. See backtest validation in <code>backtest/calibration_policy/findings.md</code>.</p></div>  <details class="explainer">
   <summary>For readers new to this <span class="ex-hint">what the yen carry trade is</span></summary>
   <div class="explainer-body"><p><span class="ex-label">What this shows</span>The <em>yen carry trade</em> is when investors borrow Japanese yen (cheap) and use the proceeds to buy higher-yielding assets elsewhere — US Treasuries, stocks, crypto. Decades of Japanese near-zero rates made this profitable. When that setup breaks — because Japan hikes rates, or the yen suddenly strengthens — those investors must sell foreign assets fast to repay the yen loans. That's an <em>unwind</em>, and it hits everything dollar-denominated at once. August 2024 was a small one; 2007-2008 was a violent extended one.</p>
 <p><span class="ex-label">How to read it</span>The score has two parts. <em>Pressure</em> measures the setup (is the trade loaded?): USD/JPY level, US-JP rate differential, and CFTC JPY positioning. <em>Trigger</em> measures whether something is firing that would discharge the trade. Trigger has TWO independent paths since the May 2026 update: <em>Path 1 (BoJ pivot)</em> fires on JGB rate stress (Aug 2024 type — BoJ raises rates, JGB yields rise, carry unwinds). <em>Path 2 (Risk-off)</em> fires on credit/equity stress — HY OAS, VIX, KRE — and catches the 2007-2008 type where the unwind comes via flight-to-yen from a credit or geopolitical event without BoJ doing anything. The active path is shown in parens next to the regime label. Loaded-active fires when Pressure ≥ 0.3 AND either trigger ≥ 0.5. Unwind risk = Pressure × (0.5 + 0.5 × min(max(Trigger_BoJ, Trigger_RiskOff), 1.0)). Above 0.65 = crisis, 0.25-0.65 = elevated, below 0.25 = calm.</p>
