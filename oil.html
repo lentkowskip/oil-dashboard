@@ -2041,7 +2041,7 @@ function renderTable(){
   const upstreamSubLabels = {
     mideast_disruption: 'Upstream — Mideast disruption (source signals: where barrels can physically move)',
     us_response:        'Upstream — US domestic response (buffer signals: how US is absorbing the shock)',
-    substitution:       'Upstream — Substitution channels (path-2 signals: how non-Hormuz routes are absorbing the shock)'
+    substitution:       'Upstream — Substitution channels (path-2 signals: how non-Hormuz routes are absorbing the shock)<br><small style="font-weight:400;color:var(--text-tertiary);font-size:11px;text-transform:none;letter-spacing:normal;">Pill dots = capacity-buffer saturation: <strong>•••</strong> = &lt;10% buffer (Near max) &middot; <strong>••</strong> = 10-15% &middot; <strong>•</strong> = 15-25% (Approaching) &middot; <em>no dots</em> = &gt;25% (Comfortable). Applied only to channels with real capacity ceilings (US crude exports, Yanbu, Fujairah).</small>'
   };
   const rowsByCat = {}; for (const c of catOrder) rowsByCat[c] = [];
   let rows = DATA.indicators.map(r => Object.assign({}, r, computeDerived(r)));
