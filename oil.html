@@ -638,9 +638,60 @@
     display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
     padding: 6px 0;
   }
-  .strip-row + .strip-row {
+  .strip-row + .strip-row,
+  .header-strip-body .strip-row:first-child {
     border-top: 0.5px solid var(--border);
   }
+  /* Collapsible body — animated height + opacity transitions. */
+  .header-strip-body {
+    overflow: hidden;
+    max-height: 2000px;  /* large enough; collapsed state overrides to 0 */
+    opacity: 1;
+    transition: max-height 0.28s ease, opacity 0.18s ease, margin 0.18s ease;
+  }
+  .header-strip.collapsed .header-strip-body {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+  }
+  /* Toggle button — sits on the right of the regime row, subtle look */
+  .strip-toggle {
+    margin-left: auto;
+    display: inline-flex; align-items: center; gap: 4px;
+    background: transparent;
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    color: var(--text-tertiary);
+    font-size: 11px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: color 0.1s, border-color 0.1s;
+  }
+  .strip-toggle:hover {
+    color: var(--text-primary);
+    border-color: var(--text-tertiary);
+  }
+  .strip-toggle-icon { display: inline-block; transition: transform 0.2s; }
+  .header-strip.collapsed .strip-toggle-icon { transform: rotate(180deg); }
+  @media (max-width: 720px) {
+    .strip-toggle-label { display: none; }  /* save space on phones — icon only */
+    .strip-toggle { padding: 4px 6px; }
+  }
+  /* Indicator-name auto-links inside prose blocks (commentary, scope notes, etc.) */
+  a.ind-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent, #2e74c9);
+    cursor: pointer;
+    transition: color 0.1s, border-color 0.1s, background 0.1s;
+  }
+  a.ind-link:hover {
+    color: var(--accent, #2e74c9);
+    border-bottom-style: solid;
+    background: rgba(46, 116, 201, 0.06);
+  }
+  a.ind-link:focus { outline: 2px solid var(--accent, #2e74c9); outline-offset: 1px; }
   .strip-row-label {
     font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em;
     color: var(--text-tertiary); font-weight: 500;
@@ -1623,7 +1674,7 @@
 
 <!-- Persistent summary strip - visible across all tabs -->
 <div class="header-strip">
-<div class="strip-row"><span class="strip-row-label">Regime</span><span class="strip-regime-line"><strong>2022 Russia-Ukraine pattern (absorbed shock)</strong><span class="strip-regime-meta">Brent Elevated $105.10 &times; Sub Engaged 1.46 &middot; Cross-asset divergence intact (oil channel bear-branch, vol/credit/equity contained) &middot; Day 73 &middot; Week 10 Hormuz</span></span></div><div class="strip-row"><span class="strip-row-label">Composites</span><span class="strip-item"><strong>Transmission</strong> <span style="color:#c63838;font-weight:600;">32%</span> / <span style="color:#c63838;font-weight:600;">46%</span> / <span style="color:#c63838;font-weight:600;">56%</span> <small style="color:var(--text-tertiary);">4w/12w/26w</small></span><span class="strip-divider"></span><span class="strip-item"><strong>Recession</strong> <span style="color:#d68b1a;font-weight:600;">13%</span> / <span style="color:#d68b1a;font-weight:600;">26%</span> / <span style="color:#d68b1a;font-weight:600;">37%</span> <small style="color:var(--text-tertiary);">3mo/9mo/18mo</small></span><span class="strip-divider"></span><span class="strip-item"><strong>Carry</strong> <span style="color:#c63838;font-weight:600;">Loaded-active (BoJ)</span> <small style="color:var(--text-tertiary);">0.61 / 0.78 / 0.55 <em>legacy</em></small></span></div><div class="strip-row"><span class="strip-row-label">Absorption</span><span class="strip-mech-block red"><strong>SUB BUFFER</strong> 9.2% <span class="strip-mech-mult">Near max &middot; 0.20x</span></span><span class="strip-mech-block amber"><strong>SPR</strong> 392.7 MMbbl <span class="strip-mech-mult">Modest cushion &middot; 0.70x</span></span><span class="strip-mech-block red"><strong>TACO STREAK</strong> 1 obs <span class="strip-mech-mult">No streak &middot; 0.00x</span></span></div><div class="strip-row"><span class="strip-row-label">Trip-lines</span><span class="strip-cushion-bar red"><strong>10Y</strong> <span class="strip-cushion-current">4.390%</span> <span class="strip-cushion-arrow">→</span> <span class="strip-cushion-distance">1.0bp to 4.400%</span></span><span class="strip-divider"></span><span class="strip-cushion-bar red"><strong>KRE</strong> <span class="strip-cushion-current">$69.85</span> <span class="strip-cushion-arrow">→</span> <span class="strip-cushion-distance">$1.85 to $68.00</span></span><span class="strip-divider"></span><span class="strip-cushion-bar amber"><strong>HY OAS</strong> <span class="strip-cushion-current">281bp</span> <span class="strip-cushion-arrow">→</span> <span class="strip-cushion-distance">44bp to 325bp</span></span><span class="strip-divider"></span><span class="strip-cushion-bar green"><strong>MOVE</strong> <span class="strip-cushion-current">68</span> <span class="strip-cushion-arrow">→</span> <span class="strip-cushion-distance">52 to 120</span></span><span class="strip-divider"></span><span class="strip-cushion-bar red"><strong>USD/JPY</strong> <span class="strip-cushion-current">157.56</span> <span class="strip-cushion-arrow">→</span> <span class="strip-cushion-distance">0.44 to 158.00</span></span></div>
+<div class="strip-row"><span class="strip-row-label">Regime</span><span class="strip-regime-line"><strong>2022 Russia-Ukraine pattern (absorbed shock)</strong><span class="strip-regime-meta">Brent Elevated $105.10 &times; Sub Engaged 1.46 &middot; Cross-asset divergence intact (oil channel bear-branch, vol/credit/equity contained) &middot; Day 73 &middot; Week 10 Hormuz</span></span><button class="strip-toggle" type="button" aria-controls="header-strip-body" aria-expanded="true" title="Show or hide composite details (mobile defaults to collapsed)"><span class="strip-toggle-label">Hide details</span><span class="strip-toggle-icon" aria-hidden="true">&#9650;</span></button></div><div class="header-strip-body" id="header-strip-body"><div class="strip-row"><span class="strip-row-label">Composites</span><span class="strip-item"><strong>Transmission</strong> <span style="color:#c63838;font-weight:600;">32%</span> / <span style="color:#c63838;font-weight:600;">46%</span> / <span style="color:#c63838;font-weight:600;">56%</span> <small style="color:var(--text-tertiary);">4w/12w/26w</small></span><span class="strip-divider"></span><span class="strip-item"><strong>Recession</strong> <span style="color:#d68b1a;font-weight:600;">13%</span> / <span style="color:#d68b1a;font-weight:600;">26%</span> / <span style="color:#d68b1a;font-weight:600;">37%</span> <small style="color:var(--text-tertiary);">3mo/9mo/18mo</small></span><span class="strip-divider"></span><span class="strip-item"><strong>Carry</strong> <span style="color:#c63838;font-weight:600;">Loaded-active (BoJ)</span> <small style="color:var(--text-tertiary);">0.61 / 0.78 / 0.55 <em>legacy</em></small></span></div><div class="strip-row"><span class="strip-row-label">Absorption</span><span class="strip-mech-block red"><strong>SUB BUFFER</strong> 9.2% <span class="strip-mech-mult">Near max &middot; 0.20x</span></span><span class="strip-mech-block amber"><strong>SPR</strong> 392.7 MMbbl <span class="strip-mech-mult">Modest cushion &middot; 0.70x</span></span><span class="strip-mech-block red"><strong>TACO STREAK</strong> 1 obs <span class="strip-mech-mult">No streak &middot; 0.00x</span></span></div><div class="strip-row"><span class="strip-row-label">Trip-lines</span><span class="strip-cushion-bar red"><strong>10Y</strong> <span class="strip-cushion-current">4.390%</span> <span class="strip-cushion-arrow">→</span> <span class="strip-cushion-distance">1.0bp to 4.400%</span></span><span class="strip-divider"></span><span class="strip-cushion-bar red"><strong>KRE</strong> <span class="strip-cushion-current">$69.85</span> <span class="strip-cushion-arrow">→</span> <span class="strip-cushion-distance">$1.85 to $68.00</span></span><span class="strip-divider"></span><span class="strip-cushion-bar amber"><strong>HY OAS</strong> <span class="strip-cushion-current">281bp</span> <span class="strip-cushion-arrow">→</span> <span class="strip-cushion-distance">44bp to 325bp</span></span><span class="strip-divider"></span><span class="strip-cushion-bar green"><strong>MOVE</strong> <span class="strip-cushion-current">68</span> <span class="strip-cushion-arrow">→</span> <span class="strip-cushion-distance">52 to 120</span></span><span class="strip-divider"></span><span class="strip-cushion-bar red"><strong>USD/JPY</strong> <span class="strip-cushion-current">157.56</span> <span class="strip-cushion-arrow">→</span> <span class="strip-cushion-distance">0.44 to 158.00</span></span></div></div>
 </div>
 
 <!-- Tab navigation -->
@@ -2514,12 +2565,183 @@ function renderChangedBanner(){
   banner.innerHTML = c.count + ' ' + noun + ' updated this refresh: ' + list + '.';
   banner.hidden = false;
 }
+function bindHeaderStripToggle(){
+  const strip = document.querySelector('.header-strip');
+  const btn = document.querySelector('.strip-toggle');
+  if (!strip || !btn) return;
+  const labelEl = btn.querySelector('.strip-toggle-label');
+  const STORAGE_KEY = 'oilTailRisk.stripCollapsed';
+  // Init: respect stored preference; otherwise auto-collapse on narrow viewports.
+  let stored = null;
+  try { stored = localStorage.getItem(STORAGE_KEY); } catch(e){}
+  let collapsed;
+  if (stored === 'true') collapsed = true;
+  else if (stored === 'false') collapsed = false;
+  else collapsed = window.innerWidth < 720;
+  function apply(){
+    strip.classList.toggle('collapsed', collapsed);
+    btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    if (labelEl) labelEl.textContent = collapsed ? 'Show details' : 'Hide details';
+  }
+  apply();
+  btn.addEventListener('click', () => {
+    collapsed = !collapsed;
+    try { localStorage.setItem(STORAGE_KEY, collapsed.toString()); } catch(e){}
+    apply();
+  });
+}
+function bindIndicatorLinks(){
+  // Build name→id alias map from DATA.indicators + a small set of common shorthands
+  // used in prose. Keep this list conservative; user can extend.
+  const aliasMap = {};  // alias-lowercase -> id
+  // Hand-curated shorthand aliases (extend over time)
+  const shorthands = [
+    ['Brent', 'brent_m1'],
+    ['Brent M1', 'brent_m1'],
+    ['Dubai-Brent', 'dubai_brent_spread'],
+    ['Dubai-Brent spread', 'dubai_brent_spread'],
+    ['USD/JPY', 'usdjpy_level'],
+    ['USD/JPY spot', 'usdjpy_level'],
+    ['USD/JPY 30d', 'usdjpy_30d'],
+    ['USD/JPY 1w', 'usdjpy_1w_vol'],
+    ['USD/JPY 1w vol', 'usdjpy_1w_vol'],
+    ['US 10Y', 'us10y_nominal'],
+    ['10Y nominal', 'us10y_nominal'],
+    ['10Y TIPS', 'tips_10y'],
+    ['TIPS', 'tips_10y'],
+    ['5y5y', 't5yifr'],
+    ['JGB 10Y', 'jgb_10y'],
+    ['JGB 2Y', 'jgb_2y'],
+    ['US-JP 10Y diff', 'us_jp_10y_diff'],
+    ['JPY spec position', 'jpy_spec_position'],
+    ['VIX', 'vix'],
+    ['MOVE', 'move'],
+    ['DXY', 'dxy'],
+    ['KRE', 'kre'],
+    ['HY OAS', 'hy_oas'],
+    ['BDI', 'bdi'],
+    ['BDC P/B', 'bdc_pb'],
+    ['SLOOS', 'sloos_ci'],
+    ['LEI', 'lei_6m'],
+    ['Initial jobless claims', 'jobless_claims'],
+    ['jobless claims', 'jobless_claims'],
+    ['SOFR-IORB', 'sofr_ois'],
+    ['USD/CNH', 'usd_cnh'],
+    ['VIX/VIX3M', 'vix_term'],
+  ];
+  const validIds = new Set(DATA.indicators.map(i => i.id));
+  shorthands.forEach(([alias, id]) => {
+    if (validIds.has(id)) aliasMap[alias.toLowerCase()] = {alias: alias, id: id};
+  });
+  // Also include exact indicator names (canonical) so e.g. "5y5y fwd breakeven" matches
+  DATA.indicators.forEach(ind => {
+    const k = ind.name.toLowerCase();
+    if (!aliasMap[k]) aliasMap[k] = {alias: ind.name, id: ind.id};
+  });
+  // Sort aliases longest-first so multi-word matches win over substrings
+  const sortedAliases = Object.values(aliasMap).sort((a,b) => b.alias.length - a.alias.length);
+  // Build a single regex: word-boundary, escaped, alternation
+  const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const pattern = new RegExp(
+    '(^|[^A-Za-z0-9/])(' + sortedAliases.map(a => esc(a.alias)).join('|') + ')(?![A-Za-z0-9])',
+    'g'
+  );
+  const aliasLookup = {};
+  sortedAliases.forEach(a => { aliasLookup[a.alias.toLowerCase()] = a.id; });
+  // Process target containers — scoped to high-value prose blocks only.
+  // Skip: tables, breakdown grids, JSON data, header strip, indicator tab table.
+  const containerSelectors = [
+    '.morning-commentary',
+    '.honest-read',
+    '.commentary-body',
+    '.summary-box',
+    '.scope-note',
+    '.div-scope',
+    '.framework-readme-body',
+    '.cat-note',
+    '.cat-past',
+    '.regime-banner',
+  ];
+  const skipSelectors = 'a, code, .strip-toggle, .indicator-table, .div-bktable, .div-spark-wrap, script, style, .ind-link, .indicator-row, .pill, .status-pill, .strip-mech-block, .strip-cushion-bar';
+  function processNode(node){
+    if (node.nodeType === Node.TEXT_NODE){
+      const text = node.nodeValue;
+      if (!text || text.length < 3) return;
+      pattern.lastIndex = 0;
+      if (!pattern.test(text)) return;
+      pattern.lastIndex = 0;
+      const frag = document.createDocumentFragment();
+      let last = 0;
+      let m;
+      while ((m = pattern.exec(text)) !== null){
+        const matchStart = m.index + m[1].length;
+        const matchEnd = matchStart + m[2].length;
+        if (matchStart > last){
+          frag.appendChild(document.createTextNode(text.slice(last, matchStart)));
+        }
+        const id = aliasLookup[m[2].toLowerCase()];
+        if (id){
+          const a = document.createElement('a');
+          a.href = '#indicators';
+          a.className = 'ind-link';
+          a.dataset.indicatorId = id;
+          a.textContent = m[2];
+          a.title = 'View this indicator';
+          frag.appendChild(a);
+        } else {
+          frag.appendChild(document.createTextNode(m[2]));
+        }
+        last = matchEnd;
+      }
+      if (last < text.length){
+        frag.appendChild(document.createTextNode(text.slice(last)));
+      }
+      node.parentNode.replaceChild(frag, node);
+      return;
+    }
+    if (node.nodeType !== Node.ELEMENT_NODE) return;
+    if (node.matches && node.matches(skipSelectors)) return;
+    // Snapshot children since we mutate during walk
+    const kids = Array.from(node.childNodes);
+    kids.forEach(processNode);
+  }
+  containerSelectors.forEach(sel => {
+    document.querySelectorAll(sel).forEach(el => {
+      if (el.dataset.indLinksProcessed) return;
+      el.dataset.indLinksProcessed = '1';
+      processNode(el);
+    });
+  });
+  // Delegated click handler — navigates to indicators tab + loads chart
+  document.body.addEventListener('click', (e) => {
+    const a = e.target.closest('a.ind-link');
+    if (!a) return;
+    e.preventDefault();
+    const id = a.dataset.indicatorId;
+    if (!id) return;
+    // Switch to indicators tab
+    const link = document.querySelector('.tab-link[data-tab="indicators"]');
+    if (link) link.click();
+    // Set selection + re-render
+    state.selectedId = id;
+    renderTable(); renderChart();
+    // Scroll selected table row into view (allow tab swap to settle first)
+    setTimeout(() => {
+      const row = document.querySelector('.indicator-row[data-id="' + id + '"]');
+      if (row && row.scrollIntoView){
+        row.scrollIntoView({behavior: 'smooth', block: 'center'});
+      }
+    }, 80);
+  });
+}
 document.addEventListener('DOMContentLoaded', () => {
   bindTabs();
   renderTable(); renderChart(); bindHeaderSort();
   renderStaleness(); bindRefreshBtn();
   initSparkCrosshairs();
   renderChangedBanner();
+  bindHeaderStripToggle();
+  bindIndicatorLinks();
 });
 </script>
 </body>
