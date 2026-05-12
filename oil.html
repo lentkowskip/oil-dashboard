@@ -2607,6 +2607,7 @@ function bindIndicatorLinks(){
     ['USD/JPY 1w vol', 'usdjpy_1w_vol'],
     ['US 10Y', 'us10y_nominal'],
     ['10Y nominal', 'us10y_nominal'],
+    ['10Y', 'us10y_nominal'],  // strip-cushion-bar label; standalone "10Y" in dashboard context = US 10Y
     ['10Y TIPS', 'tips_10y'],
     ['TIPS', 'tips_10y'],
     ['5y5y', 't5yifr'],
@@ -2648,9 +2649,10 @@ function bindIndicatorLinks(){
   );
   const aliasLookup = {};
   sortedAliases.forEach(a => { aliasLookup[a.alias.toLowerCase()] = a.id; });
-  // Process target containers — scoped to high-value prose blocks only.
-  // Skip: tables, breakdown grids, JSON data, header strip, indicator tab table.
+  // Process target containers — scoped to high-value prose blocks + indicator labels.
+  // Skip: tables, breakdown grids, JSON data, status pills (already styled), indicator tab table.
   const containerSelectors = [
+    // Commentary / prose blocks
     '.morning-commentary',
     '.honest-read',
     '.commentary-body',
@@ -2661,8 +2663,27 @@ function bindIndicatorLinks(){
     '.cat-note',
     '.cat-past',
     '.regime-banner',
+    // Disruption signals tab
+    '.div-note',
+    '.div-headline',
+    // Transmission tab — panel notes + explainers + matrix cells + tripwires
+    '.recession-note',
+    '.recession-explainer',
+    '.recession-shock',
+    '.panel-caveat',
+    '.panel-history',
+    '.regime-cell-note',
+    '.carry-regime-calibration-note',
+    '.carry-tripwire-subhead',
+    '.carry-tripwire-group',
+    '.carry-analyst-detail-label',
+    '.carry-realized',
+    // Header strip — trip-lines (indicator labels with cushion gauges)
+    '.header-strip',
   ];
-  const skipSelectors = 'a, code, .strip-toggle, .indicator-table, .div-bktable, .div-spark-wrap, script, style, .ind-link, .indicator-row, .pill, .status-pill, .strip-mech-block, .strip-cushion-bar';
+  // Skip: tables (have their own indicator click handlers), JSON data, already-linked,
+  // status pills (small chips), strip mech-blocks (composite labels, not individual indicators).
+  const skipSelectors = 'a, code, .strip-toggle, .indicator-table, .div-bktable, .div-spark-wrap, script, style, .ind-link, .indicator-row, .pill, .status-pill, .strip-mech-block, .strip-regime-line, .strip-row-label';
   function processNode(node){
     if (node.nodeType === Node.TEXT_NODE){
       const text = node.nodeValue;
