@@ -18,17 +18,38 @@ set -e
 PROJECT_DIR="/Users/paullentkowski/Documents/Claude/Projects/Oil Tail Risk and Macro Signals"
 cd "$PROJECT_DIR"
 
+# Helper: macOS Notification Center alert. Silent no-op if osascript is missing
+# (e.g. running on Linux / sandbox). Failures suppressed so notify never aborts the script.
+notify_failure() {
+  local msg="$1"
+  if command -v osascript >/dev/null 2>&1; then
+    osascript -e "display notification \"$msg\" with title \"Oil Dashboard\" subtitle \"Push failed\" sound name \"Basso\"" 2>/dev/null || true
+  fi
+}
+
 # Sanity check: oil.html exists
 if [ ! -f "oil.html" ]; then
   echo "[push_dashboard] ERROR: oil.html not found in $PROJECT_DIR"
+  notify_failure "oil.html not found in project directory"
   exit 1
 fi
 
 # If git not initialized yet, bail — initial setup should be done by hand
 if [ ! -d ".git" ]; then
   echo "[push_dashboard] ERROR: .git not found. Run 'git init' + 'git remote add origin' first."
+  notify_failure ".git directory missing — initial setup not complete"
   exit 1
 fi
+
+# Clean up stale git locks left by previous runs that crashed mid-write.
+# Only remove locks older than 2 minutes — fresh locks may belong to a real
+# git process running right now (e.g. another invocation of this script).
+for lock in .git/index.lock .git/HEAD.lock; do
+  if [ -f "$lock" ] && [ -z "$(find "$lock" -mmin -2 2>/dev/null)" ]; then
+    echo "[push_dashboard] Removing stale lock: $lock"
+    rm -f "$lock"
+  fi
+done
 
 # Stage oil.html (the .gitignore allow-list ensures nothing else can sneak in)
 git add oil.html
@@ -48,5 +69,6 @@ if git push origin main --quiet; then
   echo "[push_dashboard] Pushed: $COMMIT_MSG"
 else
   echo "[push_dashboard] ERROR: git push failed. Check 'gh auth status' and network."
+  notify_failure "git push to origin/main failed. Run 'git push origin main' from terminal to retry."
   exit 1
 fi
