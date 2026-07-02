@@ -9,6 +9,7 @@
 
 # Allow only the public dashboard + repo metadata + push tooling
 !.gitignore
+!.nojekyll
 !README.md
 !oil.html
 !index.html
